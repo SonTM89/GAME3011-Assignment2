@@ -7,26 +7,30 @@ using TMPro;
 
 public class InputValue : MonoBehaviour
 {
+    [SerializeField] private GameObject gameUI;
+
     public static Difficulty gameDifficulty;
 
-    public TextMeshProUGUI difficultyText;
+    [SerializeField] private TextMeshProUGUI difficultyText;
 
     public static PlayerSkill playerSkill;
 
-    public TextMeshProUGUI playerSkillText;
+    [SerializeField] private TextMeshProUGUI playerSkillText;
 
-    public GameObject message;
+    [SerializeField] private GameObject message;
 
-    public GameObject announcement;
+    [SerializeField] private GameObject announcement;
+
+    private bool showAnnouncement;
 
     // Start is called before the first frame update
     void Start()
     {
+        showAnnouncement = false;
+
         gameDifficulty = Difficulty.NONE;
 
         playerSkill = PlayerSkill.NONE;
-
-        StartCoroutine(HideMessage(3.0f, announcement));
     }
 
     // Update is called once per frame
@@ -35,7 +39,35 @@ public class InputValue : MonoBehaviour
         difficultyText.text = Enum.GetName(typeof(Difficulty), (int)gameDifficulty);
 
         playerSkillText.text = Enum.GetName(typeof(PlayerSkill), (int)playerSkill);
+
+        if(gameUI.activeInHierarchy)
+        {
+            if(showAnnouncement == false)
+            {
+                announcement.gameObject.SetActive(true);
+                StartCoroutine(HideMessage(3.0f, announcement));
+
+                showAnnouncement = true;
+            }
+        }
+        else
+        {
+            showAnnouncement = false;
+        }
     }
+
+
+    public void StartGame()
+    {
+        gameUI.gameObject.SetActive(true);
+    }
+
+    public void QuitGame()
+    {
+        gameUI.gameObject.SetActive(false);
+        Application.Quit();
+    }
+
 
     public void SkillRandomize()
     {
