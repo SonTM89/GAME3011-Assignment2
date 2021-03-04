@@ -54,9 +54,9 @@ public class LockPick : MonoBehaviour
         win = false;
         gameOver = false;
 
-        gameDifficulty = Difficulty.HARD;
+        gameDifficulty = InputValue.gameDifficulty;
 
-        playerSkill = PlayerSkill.LEVEL3;
+        playerSkill = InputValue.playerSkill;
 
         SettingDifficulty();
 
