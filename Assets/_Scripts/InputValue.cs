@@ -40,6 +40,7 @@ public class InputValue : MonoBehaviour
 
         playerSkillText.text = Enum.GetName(typeof(PlayerSkill), (int)playerSkill);
 
+        // Show Anouncement message when GameUI is up
         if(gameUI.activeInHierarchy)
         {
             if(showAnnouncement == false)
@@ -57,11 +58,14 @@ public class InputValue : MonoBehaviour
     }
 
 
+    // Press Start Button
     public void StartGame()
     {
         gameUI.gameObject.SetActive(true);
     }
 
+
+    // Press Quit Button
     public void QuitGame()
     {
         gameUI.gameObject.SetActive(false);
@@ -69,6 +73,7 @@ public class InputValue : MonoBehaviour
     }
 
 
+    // Press Skill Randomize Button
     public void SkillRandomize()
     {
         int count = Enum.GetValues(typeof(Difficulty)).Length;
@@ -79,26 +84,32 @@ public class InputValue : MonoBehaviour
     }
 
 
+    // Press Easy Button
     public void EasySelected()
     {
         gameDifficulty = Difficulty.EASY;
     }
 
 
+    // Press Medium Button
     public void MediumSelected()
     {
         gameDifficulty = Difficulty.MEDIUM;
     }
 
 
+    // Press Hard Button
     public void HardSelected()
     {
         gameDifficulty = Difficulty.HARD;
     }
 
 
+    // Click on the Lock
     public void OnLockClicked()
     {
+        // Go to lock simulation inside if Difficulty and Skill is selected
+        // Otherwise, show alert message
         if(gameDifficulty != Difficulty.NONE && playerSkill != PlayerSkill.NONE)
         {
             SceneManager.LoadScene("GamePlayScene");
@@ -110,6 +121,8 @@ public class InputValue : MonoBehaviour
         }
     }
 
+
+    // Hide message after specific time period
     IEnumerator HideMessage(float delay, GameObject message)
     {
         yield return new WaitForSeconds(delay);

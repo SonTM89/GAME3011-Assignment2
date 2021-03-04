@@ -49,6 +49,8 @@ public class LockPick : MonoBehaviour
 
 
     // Start is called before the first frame update
+    // Setting some important variables
+    // Setting Scene depends on Difficulty and Skill
     void Start()
     {
         win = false;
@@ -66,6 +68,7 @@ public class LockPick : MonoBehaviour
     }
 
 
+    // Setting Difficulty up to Input value
     private void SettingDifficulty()
     {
         if (gameDifficulty == Difficulty.EASY)
@@ -92,6 +95,7 @@ public class LockPick : MonoBehaviour
     }
 
 
+    // Checking LockPicking Skill to preset the simulation
     private void CheckingPlayerSkill()
     {
         int numOfPresetTumblers = (int)playerSkill - 1;
@@ -107,6 +111,7 @@ public class LockPick : MonoBehaviour
     }
 
 
+    // Randomize order of tumblers' set to use to open the lock system
     private void GenerateTumblersOrder(int numOfTumblers)
     {
         int pos = UnityEngine.Random.Range(0, numOfTumblers);
@@ -140,6 +145,7 @@ public class LockPick : MonoBehaviour
     }
 
 
+    // Setting Positions of LockPickPin relative to Tumbers' positions
     private void SettingPinPos()
     {
         if (Tumblers.Length > 0)
@@ -155,6 +161,7 @@ public class LockPick : MonoBehaviour
 
 
     // Update is called once per frame
+    // Checking win or lose condition
     void Update()
     {    
 
@@ -184,6 +191,7 @@ public class LockPick : MonoBehaviour
     }
 
 
+    // Show Message after finishing Game and change to Start scene
     IEnumerator ShowMessage(float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -191,6 +199,7 @@ public class LockPick : MonoBehaviour
     }
 
 
+    // Count down the time to set the game over state
     private void TimeCounter()
     {
         if(timeRemaining > 0)
@@ -210,6 +219,7 @@ public class LockPick : MonoBehaviour
     }
 
 
+    // Checking all Tumblers' postions to determine Player win or not
     private void TumblersChecking()
     {
         if(tumblersOrder.Count <= 0)
@@ -221,6 +231,7 @@ public class LockPick : MonoBehaviour
     }
 
     
+    // Process LockPickPin clicking
     private void PinClicking()
     {
         if(Input.GetKeyDown(KeyCode.Space))
@@ -238,8 +249,6 @@ public class LockPick : MonoBehaviour
                     tumblersOrder.RemoveAt(0);
                 }
             }
-
-
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
@@ -248,6 +257,7 @@ public class LockPick : MonoBehaviour
     }
 
 
+    // Process LockPickPin movement
     private void PinMoving()
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow))
