@@ -106,7 +106,7 @@ public class InputValue : MonoBehaviour
         else
         {
             message.gameObject.SetActive(true);
-            StartCoroutine(HideMessage(2.0f, message));
+            StartCoroutine(HideMessage(3.0f, message));
         }
     }
 

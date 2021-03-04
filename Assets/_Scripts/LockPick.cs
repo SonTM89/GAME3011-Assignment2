@@ -62,13 +62,7 @@ public class LockPick : MonoBehaviour
 
         SettingPinPos();
 
-        CheckingPlayerSkill();
-   
-        for(int j = 0; j < tumblersOrder.Count; j ++)
-        {
-            Debug.Log(tumblersOrder[j]);
-        }
-        
+        CheckingPlayerSkill();        
     }
 
 
